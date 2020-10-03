@@ -5,8 +5,7 @@ import com.company.todo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,9 +13,7 @@ import java.util.List;
 @Controller
 public class TodoController {
 
-    @Autowired
-    TodoService todoService;
-
+   private TodoService todoService;
 
     @GetMapping("/note")
     public String index(Model model) {
@@ -33,9 +30,16 @@ public class TodoController {
 
     @GetMapping("/app/1/note/1")
     public String getNote(@PathVariable("appId") long appId, @PathVariable("noteId") long noteId, Model model) {
-        System.out.println("@#de");
         Note note = todoService.findNote(appId,noteId);
         model.addAttribute("note", note);
         return "note";
+    }
+    
+    public TodoService getTodoService(){
+        return todoService;
+    }
+    
+    public void setTodoService(TodoService service){
+        this.todoService = todoService;
     }
 }
