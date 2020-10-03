@@ -1,14 +1,16 @@
 package com.company.todo.beans;
 
-import lombok.Data;
+import lombok.*;
 
 import java.util.Objects;
 
 @Data
+@AllArgsConstructor
 public class Note {
     private long id;
     private App app;
     private String title;
+    private byte[] image;
     private String text;
 
     public Note() {
@@ -25,12 +27,6 @@ public class Note {
         this.text = text;
     }
 
-    public Note(long id, App app, String title, String text) {
-        this.id = id;
-        this.app = app;
-        this.title = title;
-        this.text = text;
-    }
 
     @Override
     public String toString() {
@@ -39,6 +35,7 @@ public class Note {
                 ", app=" + app.getId() +
                 ", title='" + title + '\'' +
                 ", text='" + text + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 
